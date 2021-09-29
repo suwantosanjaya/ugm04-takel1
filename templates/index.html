@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+    <title>Aplikasi Prediksi Tingkat Kepuasan Belajar Secara Daring</title>
+</head>
+
+<body class="flex flex-col justify-between item-center p-8
+            min-h-screen bg-gradient-to-r from-green-400
+            to-blue-500 text-gray-800 md:flex-row">
+    <main class="bg-white p-16 rounded-lg">
+        <h1 class="text-3xl font-bold mb-8">Prediksi Tingkat Kepuasan Belajar Secara Daring:</h1>
+        <form action="{{ url_for('predict') }}" method="post" class="flex flex-col">
+            <label for="provinsi" class="mt-4 mb-2">Saat perkuliahan daring, Sebagian besar dimana (lokasi) anda mengakses perkuliahan daring tersebut?</label>
+            <select name="provinsi" id="provinsi" class="p-4 bg-gray-100 rounded-md">
+                <option value="0">Banten</option>
+                <option value="1">Bengkulu</option>
+                <option value="2">DKI Jakarta</option>
+                <option value="3">Jambi</option>
+                <option value="4">Jawa Barat</option>
+                <option value="5">Jawa Tengah</option>
+                <option value="6">Jawa Timur</option>
+                <option value="7">Kepulauan Riau</option>
+                <option value="8">Riau</option>
+                <option value="9">Sumatera Barat</option>
+                <option value="10">Sumatera Utara</option>
+            </select>
+
+            <label for="media_internet" class="mt-4 mb-2">Saat perkuliahan daring, apa media internet yang anda gunakan?</label>
+            <select name="media_internet" id="media_internet" class="p-4 bg-gray-100 rounded-md">
+                <option value="0">Paket Data</option>
+                <option value="1">Rental Warnet</option>
+                <option value="2">Wifi</option>
+            </select>
+            
+            <label for="sharing" class="mt-4 mb-2">Apakah saat perkuliahan daring, anda berbagi media internet dan atau perangkat dengan anggota keluarga atau teman lainnya?</label>
+            <select name="sharing" id="sharing" class="p-4 bg-gray-100 rounded-md">
+                <option value="0">Tidak</option>
+                <option value="1">Ya</option>
+            </select>
+
+            <label for="kulasync" class="mt-4 mb-2">Saat perkuliahan daring dengan model asyncronous (tanpa video conference), mayoritas perkuliahan menggunakan media pembelajaran apa?</label>
+            <select name="kulasync" id="kulasync" class="p-4 bg-gray-100 rounded-md">
+                <option value="0">Google Classroom</option>
+                <option value="1">WhatsApp/Telegram</option>
+                <option value="2">E-Learning Kampus</option>
+                <option value="3">Lain-lain</option>
+            </select>
+
+            <label for="kulsync" class="mt-4 mb-2">Saat perkuliahan daring dengan model syncronous (menggunakan video conference), mayoritas perkuliahan menggunakan media pembelajaran apa?</label>
+            <select name="kulsync" id="kulsync" class="p-4 bg-gray-100 rounded-md">
+                <option value="0">Google Meet</option>
+                <option value="1">WhatsApp/Telegram</option>
+                <option value="2">Zoom</option>
+            </select>
+
+            <label for="kecepatan" class="mt-4 mb-2">Bagaimana kecepatan akses internet di lokasi anda berada saat dilaksanakannya perkuliahan daring?</label>
+            <select name="kecepatan" id="kecepatan" class="p-4 bg-gray-100 rounded-md">
+                <option value="0">Kadang susah sinyal</option>
+                <option value="1">Lambat</option>
+                <option value="2">Biasa saja</option>
+                <option value="3">Cepat</option>
+            </select>
+
+            <label for="durasi" class="mt-4 mb-2">Dalam sepekan, berapa rata-rata durasi waktu anda dalam mengakses internet untuk kuliah daring?</label>
+            <select name="durasi" id="durasi" class="p-4 bg-gray-100 rounded-md">
+                <option value="0">&lt;= 8 jam</option>
+                <option value="1">&gt; 8 jam dan &lt;= 40 jam</option>
+                <option value="2">&gt; 40 Jam</option>
+            </select>
+
+            <label for="segmenwaktu" class="mt-4 mb-2">Kapan segmen waktu terbesar penggunaan internet selama belajar daring?</label>
+            <select name="segmenwaktu" id="segmenwaktu" class="p-4 bg-gray-100 rounded-md">
+                <option value="0">Malam</option>
+                <option value="1">Sore</option>
+                <option value="2">Siang</option>
+                <option value="3">Pagi</option>
+            </select>
+
+            <label for="biayabulanan" class="mt-4 mb-2">Berapa rata-rata biaya yang dikeluarkan (misal: untuk membeli paket internet, biaya warnet, dll) untuk akses internet selama 1 bulan</label>
+            <select name="biayabulanan" id="biayabulanan" class="p-4 bg-gray-100 rounded-md">
+                <option value="0">&lt;= 100.000</option>
+                <option value="1">&gt; 100.000 dan &lt;=500.000</option>
+                <option value="2">&gt;500.000</option>
+            </select>
+
+            <label for="kendala" class="mt-4 mb-2">Apa kendala terbesar anda dalam akses internet saat belajar daring?</label>
+            <select name="kendala" id="kendala" class="p-4 bg-gray-100 rounded-md">
+                <option value="0">Perangkat tidak mendukung</option>
+                <option value="1">Kadang sinyal hilang timbul</option>
+                <option value="2">Kecepatan internet di daerah</option>
+                <option value="3">Keterbatasan kuota internet</option>
+            </select>
+
+            <button type="submit" class="flex justify-center align-center mt-8 p-4 
+                                        bg-gradient-to-r from-green-400 to-blue-500 
+                                        text-white rounded-md
+                    ">
+                PREDIKSI TINGKAT KEPUASAN
+            </button>
+        </form>
+    </main>
+    <section class="mt-8 h-full flex-auto rounded-lg md:mt-0 md:ml-8">
+        <div class="bg-white p-16 rounded-lg">
+            <h1 class="text-5xl font-bold">
+                Tingkat kepuasan anda adalah {{ kepuasan }}/3
+            </h1>
+        </div>
+        <div class="flex justify-around bg-white p-16 rounded-lg mt-8">
+            <img class="h-24 md:h-28" src="https://digitalent.kominfo.go.id/assets/@images/logo.png" alt="logo-dts" />
+            <img class="h-24 md:h-28"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_of_Ministry_of_Communication_and_Information_Technology_of_the_Republic_of_Indonesia.svg/604px-Logo_of_Ministry_of_Communication_and_Information_Technology_of_the_Republic_of_Indonesia.svg.png"
+                alt="logo-kominfo" />
+        </div>
+    </section>
+</body>
+
+</html>
